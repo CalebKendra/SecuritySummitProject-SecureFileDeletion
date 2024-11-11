@@ -57,7 +57,7 @@ def securedelete(
     os.remove(file_path)
 
     if verbose:
-        console.print(f"\nFile {file_path} ({file_size}) securely deleted using {mode.value} method.")
+        console.print(f"\nFile {file_path} ({file_size}) deleted using {mode.value} method.")
 
     if log:
         console.print(f"Logging to `log.txt`")

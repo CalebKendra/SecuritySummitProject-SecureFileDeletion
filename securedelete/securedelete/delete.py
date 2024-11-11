@@ -65,19 +65,18 @@ def create_test_png(file_path: str) -> None:
 
     draw = ImageDraw.Draw(image)
 
-    text = "Hello, World!"
-    font_size = 100
+    font_size = 35
     try:
         font = ImageFont.truetype("Ubuntu-R.ttf", font_size)
     except IOError:
         font = ImageFont.load_default()
 
-    text_bbox = draw.textbbox((0, 0), text, font=font)
+    text_bbox = draw.textbbox((0, 0), file_path, font=font)
     text_width = text_bbox[2] - text_bbox[0]
     text_height = text_bbox[3] - text_bbox[1]
     x = (width - text_width) / 2
     y = (height - text_height) / 2
-    draw.text((x, y), text, fill="black", font=font)
+    draw.text((x, y), file_path, fill="black", font=font)
 
     image.save(file_path)
     image.show()
