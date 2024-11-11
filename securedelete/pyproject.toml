@@ -12,6 +12,7 @@ securedelete = "securedelete.main:cli"
 python = "^3.11"
 typer = "^0.13.0"
 rich = "^13.9.4"
+pillow = "^11.0.0"
 
 
 [build-system]

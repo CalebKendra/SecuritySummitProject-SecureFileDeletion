@@ -1,5 +1,6 @@
 import os
 import random
+from PIL import Image, ImageDraw, ImageFont
 
 def random_wipe(file_path: str) -> None:
     """Random method for secure deletion."""
@@ -57,7 +58,26 @@ def hmg_is5_wipe(file_path: str) -> None:
         f.seek(0)
         f.write(os.urandom(length))
 
-def create_test_file(file_path: str) -> None:
+def create_test_png(file_path: str) -> None:
     """Create a test file with some content."""
-    with open(file_path, 'w') as f:
-        f.write("This is a test file for secure deletion.")
+    width, height = 600, 600
+    image = Image.new('RGB', (width, height), 16777215)
+
+    draw = ImageDraw.Draw(image)
+
+    text = "Hello, World!"
+    font_size = 100
+    try:
+        font = ImageFont.truetype("Ubuntu-R.ttf", font_size)
+    except IOError:
+        font = ImageFont.load_default()
+
+    text_bbox = draw.textbbox((0, 0), text, font=font)
+    text_width = text_bbox[2] - text_bbox[0]
+    text_height = text_bbox[3] - text_bbox[1]
+    x = (width - text_width) / 2
+    y = (height - text_height) / 2
+    draw.text((x, y), text, fill="black", font=font)
+
+    image.save(file_path)
+    image.show()

@@ -4,7 +4,7 @@ import os
 
 import typer # type: ignore
 from rich.console import Console # type: ignore
-from securedelete.delete import gutmann_wipe, dod_wipe, hmg_is5_wipe, random_wipe, create_test_file
+from securedelete.delete import gutmann_wipe, dod_wipe, hmg_is5_wipe, random_wipe, create_test_png
 
 cli = typer.Typer()
 
@@ -31,8 +31,8 @@ def securedelete(
     local_time = time.localtime()
     formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", local_time)
     time_lock = time.time()
-    file_path = f"{time_lock}-{mode.value}.txt"
-    create_test_file(file_path)
+    file_path = f"{time_lock}-{mode.value}.png"
+    create_test_png(file_path)
 
     if verbose:
         console.print(f"Securely deleting file {file_path} using {mode.value} method.\n")
