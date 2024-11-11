@@ -1,8 +1,8 @@
 from enum import Enum
 import time
 
-import typer
-from rich.console import Console
+import typer # type: ignore
+from rich.console import Console # type: ignore
 from securedelete.delete import gutmann_wipe, dod_wipe, hmg_is5_wipe, random_wipe, simple_delete, create_test_file
 
 cli = typer.Typer()

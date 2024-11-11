@@ -8,11 +8,11 @@ Overwrites the file with random data 35 times.
 
 ### 2. DoD 5220.22-M Method
 
-Specified by the U.S. Department of Defense, this method overwrites the file with random data 7 times.
+Specified by the U.S. Department of Defense, this method overwrites the file with random data, 0's, and 1's 7 times.
 
 ### 3. HMG IS5 (Enhanced) Method
 
-Specified by the British government, this method overwrites the file with random data 3 times.
+Specified by the British government, this method overwrites the file with random data, 0's, and 1's 3 times, 1 time for each type of overwrite.
 
 ### 4. Random Method
 
