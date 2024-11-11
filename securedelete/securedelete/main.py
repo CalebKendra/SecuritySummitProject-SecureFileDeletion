@@ -1,5 +1,6 @@
 from enum import Enum
 import time
+import os
 
 import typer # type: ignore
 from rich.console import Console # type: ignore
