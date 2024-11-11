@@ -1,6 +1,5 @@
 from enum import Enum
 import time
-import os
 
 import typer # type: ignore
 from rich.console import Console # type: ignore
@@ -53,18 +52,11 @@ def securedelete(
     elif mode == Mode.RANDOM:
         random_wipe(file_path)
 
-    with open(file_path, 'rb') as file:
-        content_bytes = file.read()
-    content_str = content_bytes.decode('utf-8', errors='replace')
-
     file_size = os.path.getsize(file_path)
     os.remove(file_path)
 
     if verbose:
         console.print(f"\nFile {file_path} ({file_size}) securely deleted using {mode.value} method.")
-        console.print(f"Bytes:\n\n{content_bytes}\n")
-        console.print(f"String:\n\n{content_str}\n")
-
 
     if log:
         console.print(f"Logging to `log.txt`")
