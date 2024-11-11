@@ -1,9 +1,10 @@
 from enum import Enum
 import time
+import os
 
 import typer # type: ignore
 from rich.console import Console # type: ignore
-from securedelete.delete import gutmann_wipe, dod_wipe, hmg_is5_wipe, random_wipe, simple_delete, create_test_file
+from securedelete.delete import gutmann_wipe, dod_wipe, hmg_is5_wipe, random_wipe, create_test_file
 
 cli = typer.Typer()
 
@@ -51,13 +52,21 @@ def securedelete(
         hmg_is5_wipe(file_path)
     elif mode == Mode.RANDOM:
         random_wipe(file_path)
-    elif mode == Mode.SIMPLE:
-        simple_delete(file_path)
+
+    with open(file_path, 'rb') as file:
+        content_bytes = file.read()
+    content_str = content_bytes.decode('utf-8', errors='replace')
+
+    file_size = os.path.getsize(file_path)
+    os.remove(file_path)
 
     if verbose:
-        console.print(f"\nFile {file_path} securely deleted using {mode.value} method.")
+        console.print(f"\nFile {file_path} ({file_size}) securely deleted using {mode.value} method.")
+        console.print(f"Bytes:\n\n{content_bytes}\n")
+        console.print(f"String:\n\n{content_str}\n")
+
 
     if log:
-        console.print(f"\nLogging to `log.txt`")
+        console.print(f"Logging to `log.txt`")
         with open('log.txt', 'a') as f:
-            f.write(f"[{formatted_time}] [File] {file_path} [Method] {mode.value}\n")
+            f.write(f"[{formatted_time}] [File] {file_path} [Size] {file_size} [Method] {mode.value}\n")
