@@ -24,9 +24,13 @@ def securedelete(
         help="Specify the mode.",
     ),
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose mode."),
+    log: bool = typer.Option(False, "--log", help="Enable logging."),
 ) -> None:
     """Securely delete files."""
-    file_path = f"{time.time()}-{mode.value}.txt"
+    local_time = time.localtime()
+    formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", local_time)
+    time_lock = time.time()
+    file_path = f"{time_lock}-{mode.value}.txt"
     create_test_file(file_path)
 
     if verbose:
@@ -52,3 +56,8 @@ def securedelete(
 
     if verbose:
         console.print(f"\nFile {file_path} securely deleted using {mode.value} method.")
+
+    if log:
+        console.print(f"\nLogging to `log.txt`")
+        with open('log.txt', 'a') as f:
+            f.write(f"[{formatted_time}] [File] {file_path} [Method] {mode.value}\n")
