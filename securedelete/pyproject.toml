@@ -5,6 +5,9 @@ description = ""
 authors = ["CalebKendra <calebkendra7@gmail.com>"]
 readme = "README.md"
 
+[tool.poetry.scripts]
+securedelete = "securedelete.main:cli"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 typer = "^0.13.0"
