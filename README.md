@@ -1,6 +1,6 @@
 # Secure File Deletion
 
-This is an analysis program that creates a `png` file that is then deleted by the algorithms below. After this, I use a program called [photorec]([url](https://www.cgsecurity.org/wiki/photoRec)) to attempt to find these previously deleted `png` files. From this, I can roughly test whether these `png` files are deleted or still readable. 
+This is an analysis program that creates a `png` file that is then deleted by the algorithms below. After this, I use a program called [photorec]([url](https://www.cgsecurity.org/wiki/photoRec)) to attempt to find these previously deleted `png` files. From this, I can roughly test whether these `png` files are deleted or still readable.
 
 This program uses the following algorithms as options for secure deletion:
 
@@ -23,4 +23,3 @@ Overwrites the file with random data a random number of times (between 1 and 10)
 ### 5. Simple Deletion
 
 Uses just the `os.remove` function to delete the file without additional security measures. Should be used as a test bench as these files should be recoverable
-
