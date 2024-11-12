@@ -27,7 +27,7 @@ def securedelete(
     verbose: bool = typer.Option(False, "--verbose", "-v", help="Enable verbose mode."),
     log: bool = typer.Option(False, "--log", help="Enable logging."),
 ) -> None:
-    """Securely delete files."""
+    """Test deletion of files."""
     local_time = time.localtime()
     formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", local_time)
     time_lock = time.time()

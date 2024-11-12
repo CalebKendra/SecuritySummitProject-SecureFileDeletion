@@ -6,7 +6,7 @@ def random_wipe(file_path: str) -> None:
     """Random method for secure deletion."""
     with open(file_path, 'r+b') as f:
         length = os.path.getsize(file_path)
-        passes = random.randint(1, 10)  # Random number of passes between 1 and 10
+        passes = random.randint(1, 10)
         for _ in range(passes):
             f.seek(0)
             f.write(os.urandom(length))
@@ -59,7 +59,7 @@ def hmg_is5_wipe(file_path: str) -> None:
         f.write(os.urandom(length))
 
 def create_test_png(file_path: str) -> None:
-    """Create a test file with some content."""
+    """Create a test png with file as text."""
     width, height = 600, 600
     image = Image.new('RGB', (width, height), 16777215)
 
